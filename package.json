@@ -21,7 +21,9 @@
   ],
   "activationEvents": [
     "workspaceContains:**/pom.xml",
-    "workspaceContains:**/build.gradle"
+    "workspaceContains:**/build.gradle",
+    "onLanguage:java",
+    "onLanguage:xml"
   ],
   "main": "./dist/extension.js",
   "scripts": {
