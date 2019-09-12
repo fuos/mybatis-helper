@@ -48,4 +48,4 @@ ext install vscode-mybatisx
 ### New Features
 
 1. Support low version of vscode
-2. Use namespace to test the class' name wheather or not a Mapper
+2. Determine the class name whether a Mapper or not by using namespace
