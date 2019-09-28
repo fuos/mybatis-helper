@@ -39,6 +39,14 @@ ext install vscode-mybatisx
 
 # release note
 
+## version 1.2.0
+
+### New Features
+
+1. support multi workspaces
+
+---
+
 ## version 1.1.0
 
 ### bug fixs
