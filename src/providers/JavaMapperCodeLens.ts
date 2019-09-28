@@ -1,7 +1,9 @@
 import { CodeLensProvider, TextDocument, CodeLens, Range, Command, Position, Uri } from 'vscode'
 import { Inject, Token, Service } from 'typedi'
 import { MethodDeclaration, Mapper } from '../types/Codes'
+import { workspace } from 'vscode'
 import { IMapperParser } from '../services/MapperParser'
+import { basename } from 'path'
 import { IJavaMapperParserToken } from '../services/JavaMapperParser'
 import { IMybatisMapperXMLServiceToken, IMybatisMapperXMLService } from '../services/MybatisMapperXMLService'
 
@@ -23,6 +25,15 @@ class JavaMapperCodeLens implements CodeLensProvider {
   async provideCodeLenses(document: TextDocument): Promise<CodeLens[]> {
     // not valid BaseMapper implementation
     if (!this.javaMapperParserService.isValid(document)) {
+      return []
+    }
+
+    const folder = workspace.getWorkspaceFolder(document.uri)
+    var baseName = ''
+    if (folder) {
+      baseName = basename(folder.uri.fsPath)
+    }
+    if (!this.mybatisMapperXMLService.isMapperClass(document, baseName)) {
       return []
     }
 

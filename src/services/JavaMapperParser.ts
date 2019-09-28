@@ -3,7 +3,6 @@ import { TextDocument } from 'vscode'
 import { Token, Service } from 'typedi'
 import { MethodDeclaration, Mapper, MapperType } from '../types/Codes'
 import { IMapperParser, getMapperType } from './MapperParser'
-import { NAMESPACE_MAPPER } from './MybatisMapperXMLService'
 
 export const IJavaMapperParserToken = new Token<IMapperParser>()
 
@@ -17,27 +16,18 @@ class JavaMapperParser implements IMapperParser {
   }
 
   parse(document: TextDocument): Mapper | undefined {
-    const xmlContent = document.getText()
+    const javaContent = document.getText()
 
-    const matchedPacakgeName = xmlContent.match(/package\s+([a-zA-Z_\.]+)?;/)
+    const matchedPacakgeName = javaContent.match(/package\s+([a-zA-Z_\.]+)?;/)
     if (!matchedPacakgeName || !matchedPacakgeName[1]) {
       return
     }
-    const matchedClassName = xmlContent.match(/(?:interface|class)\s+([\w|\d]*)?/)
+    const matchedClassName = javaContent.match(/(?:interface|class)\s+([\w|\d]*)?/)
     if (!matchedClassName || !matchedClassName[1]) {
       return
     }
     const namespace = `${matchedPacakgeName[1]}.${matchedClassName[1]}`
-    if (
-      !NAMESPACE_MAPPER.find(e => {
-        return e === namespace
-      })
-    ) {
-      return
-    }
-
     const methods = findMethodDeclarations(document)
-
     const mapperType = getMapperType(document.uri.fsPath)
 
     if (!mapperType) {
