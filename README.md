@@ -1,5 +1,9 @@
 # base on vscode-mybatisx
 
+修复问题:
+1. Mapper类中, 如果存在两个方法名为test123, test, 则`Go to Mapper xml`会在test123方法上生成两个
+2. 在1的情况下, 跳转Mapper.xml时, 都会跳转到test123方法上.
+
 [![vscode version][vs-image]][vs-url]
 ![][install-url]
 ![][rate-url]

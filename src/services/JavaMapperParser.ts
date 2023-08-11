@@ -60,15 +60,19 @@ function findMethodDeclarations(document: TextDocument): Array<MethodDeclaration
     return []
   }
   return rawMethods
-    .filter(m => !!m)
-    .map(m => m.trim())
-    .map(m => m.replace(/\s*\(.*\)/, ''))
+    .filter((m): m is string => !!m)
     .map(m => {
-      const startOffset = fileContent.indexOf(m)
+      const matchedName = m.match(/\s+(([a-zA-Z_0-9]+)?\s*\()/)
+      if (!matchedName) {
+        return
+      }
+
+      const startOffset = fileContent.indexOf(matchedName[1])
       return {
-        name: m,
+        name: matchedName[2],
         startPosition: document.positionAt(startOffset),
-        endPosition: document.positionAt(startOffset + m.length)
+        endPosition: document.positionAt(startOffset + matchedName[2].length)
       }
     })
+    .filter((m): m is MethodDeclaration => !!m)
 }

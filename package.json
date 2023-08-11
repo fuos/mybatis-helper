@@ -1,20 +1,19 @@
 {
-  "name": "vsc-mybatis",
-  "displayName": "vsc-mybatis",
-  "publisher": "niko",
+  "name": "vscode-mybatis",
+  "displayName": "VSCode Mybatis",
+  "publisher": "anaer",
   "description": "Mybatis implementation for vscode",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "engines": {
     "vscode": "^1.0.0"
   },
   "bugs": {
-    "url": "https://github.com/niko-liu/vscode-mybatisx/issues",
-    "email": "173754869@qq.com"
+    "url": "https://github.com/anaer/vscode-mybatisx/issues"
   },
-  "homepage": "https://github.com/niko-liu/vscode-mybatisx/blob/master/README.md",
+  "homepage": "https://github.com/anaer/vscode-mybatisx/blob/master/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/niko-liu/vscode-mybatisx.git"
+    "url": "https://github.com/anaer/vscode-mybatisx.git"
   },
   "categories": [
     "Language Packs"
@@ -33,16 +32,16 @@
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.6",
     "@types/node": "^10.12.21",
     "@types/vscode": "^1.0.0",
-    "@types/mocha": "^5.2.6",
+    "mocha": "^6.1.4",
     "ts-loader": "^6.0.4",
     "tslint": "^5.19.0",
     "typescript": "^3.3.1",
-    "mocha": "^6.1.4",
+    "vscode-test": "^1.2.0",
     "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6",
-    "vscode-test": "^1.2.0"
+    "webpack-cli": "^3.3.6"
   },
   "dependencies": {
     "glob": "^7.1.4",

@@ -54,15 +54,15 @@ function findMethodDeclarations(document: TextDocument): Array<MethodDeclaration
   return rawMethods
     .filter((m): m is string => !!m)
     .map(m => {
-      const matchedName = m.match(/id="(.+)?"/)
+      const matchedName = m.match(/id=("(.+)?")/)
       if (!matchedName) {
         return
       }
       const startOffset = text.indexOf(matchedName[1])
       return {
-        name: matchedName[1],
-        startPosition: document.positionAt(startOffset),
-        endPosition: document.positionAt(startOffset + matchedName[1].length)
+        name: matchedName[2],
+        startPosition: document.positionAt(startOffset + 1),
+        endPosition: document.positionAt(startOffset + matchedName[2].length +1)
       }
     })
     .filter((m): m is MethodDeclaration => !!m)
