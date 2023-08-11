@@ -4,11 +4,6 @@
 1. Mapper类中, 如果存在两个方法名为test123, test, 则`Go to Mapper xml`会在test123方法上生成两个
 2. 在1的情况下, 跳转Mapper.xml时, 都会跳转到test123方法上.
 
-[![vscode version][vs-image]][vs-url]
-![][install-url]
-![][rate-url]
-![][license-url]
-
 This is porting version of [MybatisX](https://gitee.com/baomidou/MybatisX)
 
 **Go to Mapper xml**
@@ -34,12 +29,6 @@ ext install vscode-mybatisx
 ## LICENSE
 
 [GPL v3 License](https://raw.githubusercontent.com/leftstick/vscode-mybatisx/master/LICENSE)
-
-[vs-url]: https://marketplace.visualstudio.com/items?itemName=niko.vsc-mybatis
-[vs-image]: https://vsmarketplacebadge.apphb.com/version/niko.vsc-mybatis.svg
-[install-url]: https://vsmarketplacebadge.apphb.com/installs/niko.vsc-mybatis.svg
-[rate-url]: https://vsmarketplacebadge.apphb.com/rating/niko.vsc-mybatis.svg
-[license-url]: https://img.shields.io/github/license/leftstick/vscode-mybatisx.svg
 
 # release note
 

@@ -3,7 +3,7 @@
   "displayName": "VSCode Mybatis",
   "publisher": "anaer",
   "description": "Mybatis implementation for vscode",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "engines": {
     "vscode": "^1.0.0"
   },
