@@ -7,3 +7,6 @@ dist
 # npm
 node_modules
 .vscode/
+
+# os
+.DS_Store

@@ -43,9 +43,15 @@ class JavaMapperParser implements IMapperParser {
   }
 }
 
+/**
+ * 查找Java文件中的方法声明
+ * 修复同名方法只显示第一个跳转的bug，使用正则表达式全局匹配来找到所有方法的正确位置
+ * @param document TextDocument对象
+ * @returns 方法声明数组
+ */
 function findMethodDeclarations(document: TextDocument): Array<MethodDeclaration> {
   const fileContent = document.getText()
-  const matched = fileContent.match(/(?:interface|class).+.+{([\s\n\r\S]*)}/)
+  const matched = fileContent.match(/(?:interface|class).+.+{([\s\n\r\S]*)}/)  
   if (!matched) {
     return []
   }
@@ -54,25 +60,31 @@ function findMethodDeclarations(document: TextDocument): Array<MethodDeclaration
     return []
   }
 
-  const rawMethods = classOrInterfaceContent.match(/\s+([a-zA-Z_0-9]+)(\s*)\((.*)\)/g)
-
-  if (!rawMethods) {
-    return []
-  }
-  return rawMethods
-    .filter((m): m is string => !!m)
-    .map(m => {
-      const matchedName = m.match(/\s+(([a-zA-Z_0-9]+)?\s*\()/)
-      if (!matchedName) {
-        return
-      }
-
-      const startOffset = fileContent.indexOf(matchedName[1])
-      return {
-        name: matchedName[2],
-        startPosition: document.positionAt(startOffset),
-        endPosition: document.positionAt(startOffset + matchedName[2].length)
-      }
+  // 使用正则表达式全局匹配所有方法
+  const methodRegex = /\s+([a-zA-Z_0-9]+)(\s*)\((.*)\)/g
+  const methods: Array<MethodDeclaration> = []
+  let match
+  
+  // 计算类或接口内容在整个文件中的起始位置
+  const classStartIndex = fileContent.indexOf(matched[1])
+  
+  // 使用exec循环来找到所有匹配项
+  while ((match = methodRegex.exec(classOrInterfaceContent)) !== null) {
+    const methodName = match[1]
+    const fullMatch = match[0]
+    
+    // 找到方法名在匹配字符串中的位置
+    const methodNameIndex = fullMatch.indexOf(methodName)
+    
+    // 计算方法名在整个文件中的绝对位置
+    const absoluteStartOffset = classStartIndex + match.index + methodNameIndex
+    
+    methods.push({
+      name: methodName,
+      startPosition: document.positionAt(absoluteStartOffset),
+      endPosition: document.positionAt(absoluteStartOffset + methodName.length)
     })
-    .filter((m): m is MethodDeclaration => !!m)
+  }
+  
+  return methods
 }

@@ -1,19 +1,20 @@
 {
-  "name": "vscode-mybatis",
-  "displayName": "VSCode Mybatis",
-  "publisher": "anaer",
+  "name": "mybatis-helper",
+  "displayName": "mybatis-helper",
+  "publisher": "fuos",
+  "icon": "images/icon.png",
   "description": "Mybatis implementation for vscode",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "engines": {
     "vscode": "^1.0.0"
   },
   "bugs": {
-    "url": "https://github.com/anaer/vscode-mybatisx/issues"
+    "url": "https://github.com/fuos/mybatis-helper/issues"
   },
-  "homepage": "https://github.com/anaer/vscode-mybatisx/blob/master/README.md",
+  "homepage": "https://github.com/fuos/mybatis-helper/blob/master/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anaer/vscode-mybatisx.git"
+    "url": "https://github.com/fuos/mybatis-helper.git"
   },
   "categories": [
     "Language Packs"
@@ -26,9 +27,9 @@
   ],
   "main": "./dist/extension.js",
   "scripts": {
-    "vscode:prepublish": "webpack --mode production",
-    "compile": "webpack --mode development",
-    "watch": "webpack --mode development --watch"
+    "vscode:prepublish": "NODE_OPTIONS=--openssl-legacy-provider webpack --mode production",
+    "compile": "NODE_OPTIONS=--openssl-legacy-provider webpack --mode development",
+    "watch": "NODE_OPTIONS=--openssl-legacy-provider webpack --mode development --watch"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",

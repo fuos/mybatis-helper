@@ -1,9 +1,5 @@
 # base on vscode-mybatisx
 
-修复问题:
-1. Mapper类中, 如果存在两个方法名为test123, test, 则`Go to Mapper xml`会在test123方法上生成两个
-2. 在1的情况下, 跳转Mapper.xml时, 都会跳转到test123方法上.
-
 This is porting version of [MybatisX](https://gitee.com/baomidou/MybatisX)
 
 **Go to Mapper xml**
@@ -31,6 +27,20 @@ ext install vscode-mybatisx
 [GPL v3 License](https://raw.githubusercontent.com/leftstick/vscode-mybatisx/master/LICENSE)
 
 # release note
+
+## version 1.2.3
+
+### bug fixs
+
+1. 修复同名Java方法无法正确跳转到对应XML的问题
+2. 增加扩展图标
+
+## version 1.2.2
+
+### bug fixs
+
+1. Mapper类中, 如果存在两个方法名为test123, test, 则`Go to Mapper xml`会在test123方法上生成两个
+2. 在1的情况下, 跳转Mapper.xml时, 都会跳转到test123方法上.
 
 ## version 1.2.0
 
